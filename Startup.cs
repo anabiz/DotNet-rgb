@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Notnet_rgp.Services.CharacterService;
 
 namespace Notnet_rgp
 {
@@ -32,6 +33,8 @@ namespace Notnet_rgp
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Notnet_rgp", Version = "v1" });
             });
+
+            services.AddScoped<ICharacterService, CharacterService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
