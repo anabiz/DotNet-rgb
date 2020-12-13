@@ -52,8 +52,14 @@ namespace Notnet_rgp.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateCharacter(UpdateCharacter updatedcharacter)
         {
+            ServiceResponse<GetCharacter> response = await _characterService.UpdateCharacter(updatedcharacter);
 
-            return Ok(await _characterService.UpdateCharacter(updatedcharacter));
+            if(response.Data == null)
+            {
+                return NotFound(response);
+            }
+
+            return Ok(response);
         }
     }
 }
