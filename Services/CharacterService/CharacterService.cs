@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -60,14 +61,24 @@ namespace Notnet_rgp.Services.CharacterService
 
             Character character = characters.FirstOrDefault(c => c.Id == updateCharacter.Id);
 
-            character.Name = updateCharacter.Name;
-            character.Strength = updateCharacter.Strength;
-            character.Class = updateCharacter.Class;
-            character.Defence = updateCharacter.Defence;
-            character.HitPoints = updateCharacter.HitPoints;
-            character.Intelligence = updateCharacter.Intelligence;
+       
+            try
+            {
+                character.Name = updateCharacter.Name;
+                character.Strength = updateCharacter.Strength;
+                character.Class = updateCharacter.Class;
+                character.Defence = updateCharacter.Defence;
+                character.HitPoints = updateCharacter.HitPoints;
+                character.Intelligence = updateCharacter.Intelligence;
 
-            serviceResponse.Data = _mapper.Map<GetCharacter>(character);
+                serviceResponse.Data = _mapper.Map<GetCharacter>(character);
+
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+            }
 
             return serviceResponse;
 

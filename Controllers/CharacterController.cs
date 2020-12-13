@@ -42,14 +42,14 @@ namespace Notnet_rgp.Controllers
             return Ok(await _characterService.GetCharacterById(id));
         }
 
-        [HttpPost("")]
+        [HttpPost]
         public async Task<IActionResult> AddCharacter(AddCharacter newcharacter)
         {
 
             return Ok(await _characterService.AddCharacter(newcharacter));
         }
 
-        [HttpPost("")]
+        [HttpPut]
         public async Task<IActionResult> UpdateCharacter(UpdateCharacter updatedcharacter)
         {
 
