@@ -25,7 +25,11 @@ namespace Notnet_rgp.Services.CharacterService
         {
             ServiceResponse<List<GetCharacter>> serviceResponse = new ServiceResponse<List<GetCharacter>>();
             
-            characters.Add(_mapper.Map<Character>(newcharacter));
+            Character character = _mapper.Map<Character>(newcharacter);
+
+            character.Id = characters.Max(c => c.Id) + 1;
+
+            characters.Add(character); 
 
             serviceResponse.Data = (characters.Select(c => _mapper.Map<GetCharacter>(c))).ToList();
 
@@ -48,6 +52,25 @@ namespace Notnet_rgp.Services.CharacterService
             serviceResponse.Data = _mapper.Map<GetCharacter>(characters.FirstOrDefault(c => c.Id == id));
 
             return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<GetCharacter>> UpdateCharacter(UpdateCharacter updateCharacter)
+        {
+            ServiceResponse<GetCharacter> serviceResponse = new ServiceResponse<GetCharacter>();
+
+            Character character = characters.FirstOrDefault(c => c.Id == updateCharacter.Id);
+
+            character.Name = updateCharacter.Name;
+            character.Strength = updateCharacter.Strength;
+            character.Class = updateCharacter.Class;
+            character.Defence = updateCharacter.Defence;
+            character.HitPoints = updateCharacter.HitPoints;
+            character.Intelligence = updateCharacter.Intelligence;
+
+            serviceResponse.Data = _mapper.Map<GetCharacter>(character);
+
+            return serviceResponse;
+
         }
     }
 }
