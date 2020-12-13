@@ -83,5 +83,31 @@ namespace Notnet_rgp.Services.CharacterService
             return serviceResponse;
 
         }
+
+        public async Task<ServiceResponse<List<GetCharacter>>> DeleteCharacter(int id)
+        {
+
+            ServiceResponse<List<GetCharacter>> serviceResponse = new ServiceResponse<List<GetCharacter>>();
+
+            
+            try
+            {
+
+                Character character = characters.First(c => c.Id == id);
+                characters.Remove(character);
+                serviceResponse.Data = (characters.Select(c => _mapper.Map<GetCharacter>(c))).ToList();
+
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+            }
+
+            return serviceResponse;
+
+
+
+        }
     }
 }

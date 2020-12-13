@@ -14,5 +14,7 @@ namespace Notnet_rgp.Services.CharacterService
         Task<ServiceResponse<List<GetCharacter>>> AddCharacter(AddCharacter newCharacter);
 
         Task<ServiceResponse<GetCharacter>> UpdateCharacter(UpdateCharacter updateCharacter);
+
+        Task<ServiceResponse<List<GetCharacter>>> DeleteCharacter(int id);
     }
 }
