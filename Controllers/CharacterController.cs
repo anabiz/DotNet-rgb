@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Notnet_rgp.Dtos.Character;
 using Notnet_rgp.Model;
 using Notnet_rgp.Services.CharacterService;
 
@@ -42,7 +43,7 @@ namespace Notnet_rgp.Controllers
         }
 
         [HttpPost("")]
-        public async Task<IActionResult> AddCharacter(Character newcharacter)
+        public async Task<IActionResult> AddCharacter(AddCharacter newcharacter)
         {
 
             return Ok(await _characterService.AddCharacter(newcharacter));

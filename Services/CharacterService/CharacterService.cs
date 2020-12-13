@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Notnet_rgp.Dtos.Character;
 using Notnet_rgp.Model;
 
 namespace Notnet_rgp.Services.CharacterService
@@ -12,9 +13,9 @@ namespace Notnet_rgp.Services.CharacterService
             new Character { Id = 1, Name = "Sam" }
         };
 
-        public async Task<ServiceResponse<List<Character>>> AddCharacter(Character newcharacter)
+        public async Task<ServiceResponse<List<GetCharacter>>> AddCharacter(AddCharacter newcharacter)
         {
-            ServiceResponse<List<Character>> serviceResponse = new ServiceResponse<List<Character>>();
+            ServiceResponse<List<GetCharacter>> serviceResponse = new ServiceResponse<List<GetCharacter>>();
             
             characters.Add(newcharacter);
 
@@ -23,9 +24,9 @@ namespace Notnet_rgp.Services.CharacterService
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<List<Character>>> GetAllCharacters()
+        public async Task<ServiceResponse<List<GetCharacter>>> GetAllCharacters()
         {
-            ServiceResponse<List<Character>> serviceResponse = new ServiceResponse<List<Character>>();
+            ServiceResponse<List<GetCharacter>> serviceResponse = new ServiceResponse<List<GetCharacter>>();
 
             serviceResponse.Data = characters;
 
@@ -34,7 +35,7 @@ namespace Notnet_rgp.Services.CharacterService
 
         public async Task<ServiceResponse<Character>> GetCharacterById(int id)
         {
-            ServiceResponse<Character> serviceResponse = new ServiceResponse<Character>();
+            ServiceResponse<GetCharacter> serviceResponse = new ServiceResponse<GetCharacter>();
 
             serviceResponse.Data = characters.FirstOrDefault(c => c.Id == id);
 
